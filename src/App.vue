@@ -23,7 +23,9 @@
             xl="4"
           >
             <Media :item="media" @control="controlEvent">
-              <v-img :id="media.id" :src="media.src"></v-img>
+              <template v-slot:[media.slotname]>
+                <v-img :id="media.id" :src="media.src"></v-img>
+              </template>
             </Media>
           </v-col>
           <v-col
@@ -80,6 +82,16 @@
             xl="4"
           >
             <Entity :item="entity" />
+          </v-col>
+          <v-col
+            v-if="selectedComponent === 'Entity2'"
+            lg="4"
+            sm="6"
+            md="6"
+            cols="12"
+            xl="4"
+          >
+            <Entity2 :item="entity2" />
           </v-col>
           <v-col
             v-if="selectedComponent === 'Entities'"
@@ -328,6 +340,7 @@ import Alarm from "./components/alarm.vue";
 import Button from "./components/button.vue";
 import Slider from "./components/slider.vue";
 import Entity from "./components/entity.vue";
+import Entity2 from "./components/entity2.vue";
 import Entities from "./components/entities.vue";
 import Glance from "./components/glance.vue";
 import Logbook from "./components/logbook.vue";
@@ -357,6 +370,7 @@ export default Vue.extend({
     Button,
     Slider,
     Entity,
+    Entity2,
     Entities,
     Glance,
     Logbook,
@@ -385,6 +399,7 @@ export default Vue.extend({
       "Button",
       "Slider",
       "Entity",
+      "Entity2",
       "Entities",
       "Glance",
       "Logbook",
@@ -409,6 +424,7 @@ export default Vue.extend({
       id: "1",
       src: "https://cdn.vuetifyjs.com/images/cards/cooking.png",
       title: "camera 1",
+      slotname:"media",
       options: {
         PT: true,
         zoom: true,
@@ -472,6 +488,35 @@ export default Vue.extend({
         icon: true,
       },
     } as entity,
+    entity2: {
+      name: "Ups O/p Current",
+      value: true,
+      options: {
+        isSwitchable: true,
+        icon: {
+          on: {
+            name: "mdi-current-ac",
+            color: "red",
+          },
+          off: {
+            name: "mdi-current-ac",
+            color: "grey",
+          },
+          size: 32,
+        },
+        text: {
+          custom: true,
+          true: "On",
+          false: "Off",
+        },
+        style: {
+          v_card: {
+            outlined: true,
+            rounded: "lg",
+          },
+        },
+      },
+    },
     entities: {
       title: "Name",
       items: [
@@ -742,6 +787,14 @@ export default Vue.extend({
       value: 76,
       unit: "C",
       name: "Temperature",
+      options: {
+        style: {
+          v_card: {
+            outlined: true,
+            rounded: "lg",
+          },
+        },
+      },
     } as gauge,
     HistoryGraphItem: {
       title: "HistoryGraph",

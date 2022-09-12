@@ -5,6 +5,7 @@ export { default as Alarm } from './alarm.vue';
 export { default as Button } from './button.vue';
 export { default as Slider } from './slider.vue';
 export { default as Entity } from './entity.vue';
+export { default as Entity2 } from './entity2.vue';
 export { default as Entities } from './entities.vue';
 export { default as Glance } from './glance.vue';
 export { default as Logbook } from './logbook.vue';

@@ -1,5 +1,6 @@
 <template>
   <v-card
+    v-bind="item.options.style ? item.options.style.v_card : ''"
     :id="`media_player${item.id}`"
     class="d-flex flex-column justify-center"
   >
@@ -106,7 +107,7 @@
         <!-- 
         @slot for passing custom Html Elements
         -->
-        <slot> </slot>
+        <slot name="media"> </slot>
       </v-card>
     </div>
     <v-card-actions :class="isFullscreen ? 'video-controls py-0' : 'py-1'">

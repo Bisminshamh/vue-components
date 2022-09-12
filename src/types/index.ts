@@ -4,11 +4,13 @@ export interface mediaItem {
     type: string;
     src: string;
     title: string;
+    slotname: string,
     options: {
         PT: boolean
         zoom: boolean,
         mic: boolean;
         volume: boolean;
+        style: any
     };
 }
 export interface ControlEvent {
@@ -48,6 +50,33 @@ export interface entity {
     unit: string
 }
 //<-----entity----->
+//<-----entity2----->
+export interface entity2 {
+    name: string,
+    value: boolean,
+    unit?: string,
+    options: {
+        isSwitchable: boolean,
+        icon: {
+            on: {
+                name: string,
+                color: string,
+            },
+            off: {
+                name: string,
+                color: string,
+            },
+            size: number,
+        },
+        text: {
+            custom: boolean,
+            true: string,
+            false: string,
+        },
+    },
+    vuetifyStyle: Object,
+}
+//<-----entity2----->
 //<-----entities----->
 export type icon_key = 'icon' | 'icon_color'
 export type icon_object_key = 'on' | 'off'
@@ -174,7 +203,8 @@ export interface gauge {
     title: string,
     value: number,
     unit: string,
-    name: string
+    name: string,
+    style: Object
 }
 //<-----gauge card----->
 

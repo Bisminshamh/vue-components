@@ -14,6 +14,7 @@ export const Alarm: VueConstructor<Vue>;
 export const Button: VueConstructor<Vue>;
 export const Slider: VueConstructor<Vue>;
 export const Entity: VueConstructor<Vue>;
+export const Entity2: VueConstructor<Vue>;
 export const Entities: VueConstructor<Vue>;
 export const Glance: VueConstructor<Vue>;
 export const Logbook: VueConstructor<Vue>;
