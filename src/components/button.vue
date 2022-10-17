@@ -1,18 +1,18 @@
 <template>
-  <v-card>
+  <v-card >
     <v-card @click="change()" flat>
       <v-row class="fill-height pt-5" align="center" justify="center">
         <v-col cols="6" class="d-flex flex-column align-center justify-center">
           <v-icon
             v-if="item.Options.icon.show"
-            size="80"
+            :size="item.Options.icon.size"
             :color="
               item.status
-                ? item.Options.icon_color.on
-                : item.Options.icon_color.off
+                ? item.Options.icon.on.color
+                : item.Options.icon.off.color
             "
           >
-            {{ item.status ? item.Options.icon.on : item.Options.icon.off }}
+            {{ item.status ? item.Options.icon.on.name : item.Options.icon.off.name }}
           </v-icon>
           <v-card-title>{{ item.name }}</v-card-title>
         </v-col>

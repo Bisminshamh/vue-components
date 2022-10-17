@@ -11,8 +11,8 @@
         @click="clicked(element)"
       >
         <v-icon
-          :color="element.status ? element.iconColor.on : element.iconColor.off"
-          >{{ element.status ? element.icon.on : element.icon.off }}</v-icon
+          :color="element.status ? element.Options.icon.on.color : element.Options.icon.off.color"
+          >{{ element.status ? element.Options.icon.on.name : element.Options.icon.off.name }}</v-icon
         >
       </v-btn>
     </v-card-actions>

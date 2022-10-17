@@ -9,8 +9,8 @@
         :style="`top:${item.position.top}%;transform: rotate(${item.position.rotate}deg);;left:${item.position.left}%;`"
       >
         <v-btn icon @click="clicked(item)">
-          <v-icon :color="item.status ? item.color.on : item.color.off">{{
-            item.status ? item.on : item.off
+          <v-icon :color="item.status ? item.on.color : item.off.color">{{
+            item.status ? item.on.name : item.off.name
           }}</v-icon>
         </v-btn>
       </div>

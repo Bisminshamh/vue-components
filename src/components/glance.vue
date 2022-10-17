@@ -19,12 +19,14 @@
                   size="30"
                   :color="
                     item.status
-                      ? item.Options.icon_color.on
-                      : item.Options.icon_color.off
+                      ? item.Options.icon.on.color
+                      : item.Options.icon.off.color
                   "
                 >
                   {{
-                    item.status ? item.Options.icon.on : item.Options.icon.off
+                    item.status
+                      ? item.Options.icon.on.name
+                      : item.Options.icon.off.name
                   }}
                 </v-icon>
                 <v-card-subtitle class="pa-0 pt-1 caption">{{

@@ -31,10 +31,17 @@ export interface button {
     status: Boolean,
     Options: {
         icon: {
-            show: Boolean,
-            on: String,
-            off: String,
+            on: {
+                name: string,
+                color: string,
+            },
+            off: {
+                name: string,
+                color: string,
+            },
+            size: number,
         },
+        style: any
     },
 }
 //<-----button----->
@@ -101,8 +108,16 @@ export interface entitiesItem {
         isSwitchable: boolean,
         condition?: string,
         conditionValue?: number,
-        icon: icon,
-        icon_color: icon_color,
+        icon: {
+            on: {
+                name: string,
+                color: string,
+            },
+            off: {
+                name: string,
+                color: string,
+            },
+        },
     },
 }
 //entities
@@ -118,8 +133,16 @@ export interface glanceItem {
     name: string,
     status: boolean,
     Options: {
-        icon: icon,
-        icon_color: icon_color,
+        icon: {
+            on: {
+                name: string,
+                color: string,
+            },
+            off: {
+                name: string,
+                color: string,
+            },
+        },
     },
 }
 //glance 
@@ -204,7 +227,9 @@ export interface gauge {
     value: number,
     unit: string,
     name: string,
-    style: Object
+    options: {
+        style: Object
+    }
 }
 //<-----gauge card----->
 
@@ -217,12 +242,14 @@ export interface history_graph {
 //<-----Map----->
 export interface map {
     title: string,
+    options: {
+        style: any
+    };
     items: Array<{
         id: string,
         lat: string,
         long: string,
-    }
-    >
+    }>
 }
 //<-----Map----->
 //<-----pictureElement----->
@@ -231,11 +258,13 @@ export interface map {
 export interface pictureElementIconItem {
     id: string,
     status: boolean,
-    on: string,
-    off: string,
-    color: {
-        on: string,
-        off: string,
+    on: {
+        name: string,
+        color: string,
+    },
+    off: {
+        name: string,
+        color: string,
     },
     position: {
         top: number,
@@ -274,8 +303,18 @@ export interface vertical_card {
 export interface pictureGlanceItem {
     id: string,
     status: boolean,
-    icon: icon,
-    iconColor: icon_color,
+    Options: {
+        icon: {
+            on: {
+                name: string,
+                color: string,
+            },
+            off: {
+                name: string,
+                color: string,
+            },
+        },
+    }
 }
 export interface pictureGlance {
     title: string,
@@ -289,14 +328,18 @@ export interface conditionalItem {
     items: Array<{
         id: string,
         status: boolean,
-        icon: {
-            on: string,
-            off: string,
-        },
-        iconColor: {
-            on: string,
-            off: string,
-        },
+        Options: {
+            icon: {
+                on: {
+                    name: string,
+                    color: string,
+                },
+                off: {
+                    name: string,
+                    color: string,
+                },
+            },
+        }
     }>
 }
 export interface conditional {

@@ -1,5 +1,8 @@
 <template>
-  <v-card height="500px">
+  <v-card
+    height="500px"
+    v-bind="item.options.style ? item.options.style.v_card : ''"
+  >
     <v-card-title>{{ item.title }}</v-card-title>
     <l-map :zoom="zoom" :center="center" :bounds="bounds">
       <l-tile-layer

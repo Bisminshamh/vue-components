@@ -424,12 +424,18 @@ export default Vue.extend({
       id: "1",
       src: "https://cdn.vuetifyjs.com/images/cards/cooking.png",
       title: "camera 1",
-      slotname:"media",
+      slotname: "media",
       options: {
         PT: true,
         zoom: true,
         mic: true,
         volume: true,
+        style: {
+          v_card: {
+            outlined: true,
+            rounded: "lg",
+          },
+        },
       },
     } as mediaItem,
     video: {
@@ -455,12 +461,21 @@ export default Vue.extend({
       Options: {
         icon: {
           show: true,
-          on: "mdi-lock",
-          off: "mdi-lock-open",
+          on: {
+            name: "mdi-lock",
+            color: "green",
+          },
+          off: {
+            name: "mdi-lock-open",
+            color: "red",
+          },
+          size: 80,
         },
-        icon_color: {
-          on: "green",
-          off: "red",
+        style: {
+          v_card: {
+            outlined: true,
+            rounded: "lg",
+          },
         },
       },
     } as button,
@@ -471,12 +486,21 @@ export default Vue.extend({
       Options: {
         icon: {
           show: true,
-          on: "mdi-lightbulb-on",
-          off: "mdi-lightbulb",
+          on: {
+            name: "mdi-lightbulb-on",
+            color: "yellow",
+          },
+          off: {
+            name: "mdi-lightbulb",
+            color: "grey",
+          },
+          size: 80,
         },
-        icon_color: {
-          on: "yellow",
-          off: "grey",
+        style: {
+          v_card: {
+            outlined: true,
+            rounded: "lg",
+          },
         },
       },
     } as slider,
@@ -519,6 +543,14 @@ export default Vue.extend({
     },
     entities: {
       title: "Name",
+      options: {
+        style: {
+          v_card: {
+            outlined: true,
+            rounded: "lg",
+          },
+        },
+      },
       items: [
         {
           title: "Real-Time",
@@ -526,12 +558,14 @@ export default Vue.extend({
           options: {
             isSwitchable: true,
             icon: {
-              on: "mdi-clock",
-              off: "mdi-account",
-            },
-            icon_color: {
-              on: "blue",
-              off: "red",
+              on: {
+                name: "mdi-clock",
+                color: "yellow",
+              },
+              off: {
+                name: "mdi-account",
+                color: "red",
+              },
             },
           },
         },
@@ -544,12 +578,14 @@ export default Vue.extend({
             condition: "<",
             conditionValue: 5,
             icon: {
-              on: "mdi-clock",
-              off: "mdi-account",
-            },
-            icon_color: {
-              on: "blue",
-              off: "red",
+              on: {
+                name: "mdi-clock",
+                color: "yellow",
+              },
+              off: {
+                name: "mdi-account",
+                color: "red",
+              },
             },
           },
         },
@@ -559,12 +595,14 @@ export default Vue.extend({
           options: {
             isSwitchable: true,
             icon: {
-              on: "mdi-flag",
-              off: "mdi-flag",
-            },
-            icon_color: {
-              on: "blue",
-              off: "red",
+              on: {
+                name: "mdi-flag",
+                color: "blue",
+              },
+              off: {
+                name: "mdi-flag",
+                color: "red",
+              },
             },
           },
         },
@@ -578,12 +616,14 @@ export default Vue.extend({
           status: false,
           Options: {
             icon: {
-              on: "mdi-run",
-              off: "mdi-run",
-            },
-            icon_color: {
-              on: "yellow",
-              off: "grey",
+              on: {
+                name: "mdi-clock",
+                color: "yellow",
+              },
+              off: {
+                name: "mdi-account",
+                color: "red",
+              },
             },
           },
         },
@@ -593,12 +633,14 @@ export default Vue.extend({
 
           Options: {
             icon: {
-              on: "mdi-lightbulb-on",
-              off: "mdi-lightbulb",
-            },
-            icon_color: {
-              on: "yellow",
-              off: "grey",
+              on: {
+                name: "mdi-clock",
+                color: "yellow",
+              },
+              off: {
+                name: "mdi-account",
+                color: "red",
+              },
             },
           },
         },
@@ -608,12 +650,14 @@ export default Vue.extend({
 
           Options: {
             icon: {
-              on: "mdi-thermometer",
-              off: "mdi-thermometer",
-            },
-            icon_color: {
-              on: "yellow",
-              off: "grey",
+              on: {
+                name: "mdi-clock",
+                color: "yellow",
+              },
+              off: {
+                name: "mdi-account",
+                color: "red",
+              },
             },
           },
         },
@@ -623,12 +667,14 @@ export default Vue.extend({
 
           Options: {
             icon: {
-              on: "mdi-lightbulb-on",
-              off: "mdi-lightbulb",
-            },
-            icon_color: {
-              on: "yellow",
-              off: "grey",
+              on: {
+                name: "mdi-clock",
+                color: "yellow",
+              },
+              off: {
+                name: "mdi-account",
+                color: "red",
+              },
             },
           },
         },
@@ -638,12 +684,14 @@ export default Vue.extend({
 
           Options: {
             icon: {
-              on: "mdi-lightbulb-on",
-              off: "mdi-lightbulb",
-            },
-            icon_color: {
-              on: "yellow",
-              off: "grey",
+              on: {
+                name: "mdi-clock",
+                color: "yellow",
+              },
+              off: {
+                name: "mdi-account",
+                color: "red",
+              },
             },
           },
         },
@@ -827,6 +875,14 @@ export default Vue.extend({
     } as history_graph,
     MapItem: {
       title: "Map",
+      options: {
+        style: {
+          v_card: {
+            outlined: true,
+            rounded: "lg",
+          },
+        },
+      },
       items: [
         {
           id: "1",
@@ -845,14 +901,16 @@ export default Vue.extend({
       src: "https://demo.home-assistant.io/assets/arsaboo/floorplans/main.png",
       icons: [
         {
+          on: {
+            name: "mdi-lightbulb-on",
+            color: "yellow",
+          },
+          off: {
+            name: "mdi-lightbulb-off",
+            color: "grey",
+          },
           id: "room 1",
           status: false,
-          on: "mdi-lightbulb-on",
-          off: "mdi-lightbulb-off",
-          color: {
-            on: "yellow",
-            off: "grey",
-          },
           position: {
             top: 30,
             left: 50,
@@ -862,11 +920,13 @@ export default Vue.extend({
         {
           id: "room 2",
           status: true,
-          on: "mdi-lightbulb-on",
-          off: "mdi-lightbulb-off",
-          color: {
-            on: "yellow",
-            off: "grey",
+          on: {
+            name: "mdi-lightbulb-on",
+            color: "yellow",
+          },
+          off: {
+            name: "mdi-lightbulb-off",
+            color: "grey",
           },
           position: {
             top: 40,
@@ -877,11 +937,13 @@ export default Vue.extend({
         {
           id: "room 3",
           status: false,
-          on: "mdi-lightbulb-on",
-          off: "mdi-lightbulb-off",
-          color: {
-            on: "yellow",
-            off: "grey",
+          on: {
+            name: "mdi-lightbulb-on",
+            color: "yellow",
+          },
+          off: {
+            name: "mdi-lightbulb-off",
+            color: "grey",
           },
           position: {
             top: 90,
@@ -892,11 +954,13 @@ export default Vue.extend({
         {
           id: "door 1",
           status: false,
-          on: "mdi-door-closed",
-          off: "mdi-door-closed",
-          color: {
-            on: "yellow",
-            off: "grey",
+          on: {
+            name: "mdi-door-closed",
+            color: "yellow",
+          },
+          off: {
+            name: "mdi-door-closed",
+            color: "grey",
           },
           position: {
             top: 84,
@@ -907,11 +971,13 @@ export default Vue.extend({
         {
           id: "door 2",
           status: false,
-          on: "mdi-door-closed",
-          off: "mdi-door-closed",
-          color: {
-            on: "yellow",
-            off: "grey",
+          on: {
+            name: "mdi-door-closed",
+            color: "yellow",
+          },
+          off: {
+            name: "mdi-door-closed",
+            color: "grey",
           },
           position: {
             top: 12,
@@ -921,12 +987,13 @@ export default Vue.extend({
         },
         {
           id: "motion 1",
-          on: "mdi-walk",
-          off: "mdi-walk",
-          status: false,
-          color: {
-            on: "yellow",
-            off: "grey",
+          on: {
+            name: "mdi-walk",
+            color: "yellow",
+          },
+          off: {
+            name: "mdi-walk",
+            color: "grey",
           },
           position: {
             top: 23,
@@ -936,12 +1003,13 @@ export default Vue.extend({
         },
         {
           id: "motion 2",
-          on: "mdi-walk",
-          off: "mdi-walk",
-          status: false,
-          color: {
-            on: "yellow",
-            off: "grey",
+          on: {
+            name: "mdi-walk",
+            color: "yellow",
+          },
+          off: {
+            name: "mdi-walk",
+            color: "grey",
           },
           position: {
             top: 23,
@@ -951,12 +1019,13 @@ export default Vue.extend({
         },
         {
           id: "motion 3",
-          on: "mdi-walk",
-          off: "mdi-walk",
-          status: false,
-          color: {
-            on: "yellow",
-            off: "grey",
+          on: {
+            name: "mdi-walk",
+            color: "yellow",
+          },
+          off: {
+            name: "mdi-walk",
+            color: "grey",
           },
           position: {
             top: 90,
@@ -966,12 +1035,13 @@ export default Vue.extend({
         },
         {
           id: "video 1",
-          on: "mdi-video",
-          off: "mdi-video",
-          status: false,
-          color: {
-            on: "yellow",
-            off: "grey",
+          on: {
+            name: "mdi-video",
+            color: "yellow",
+          },
+          off: {
+            name: "mdi-account",
+            color: "grey",
           },
           position: {
             top: 11,
@@ -981,12 +1051,13 @@ export default Vue.extend({
         },
         {
           id: "video 2",
-          on: "mdi-video",
-          off: "mdi-video",
-          status: false,
-          color: {
-            on: "yellow",
-            off: "grey",
+          on: {
+            name: "mdi-video",
+            color: "yellow",
+          },
+          off: {
+            name: "mdi-video",
+            color: "grey",
           },
           position: {
             top: 11,
@@ -996,12 +1067,13 @@ export default Vue.extend({
         },
         {
           id: "video 3",
-          on: "mdi-video",
-          off: "mdi-video",
-          status: false,
-          color: {
-            on: "yellow",
-            off: "grey",
+          on: {
+            name: "mdi-video",
+            color: "yellow",
+          },
+          off: {
+            name: "mdi-video",
+            color: "grey",
           },
           position: {
             top: 80,
@@ -1011,12 +1083,13 @@ export default Vue.extend({
         },
         {
           id: "video 4",
-          on: "mdi-video",
-          off: "mdi-video",
-          status: false,
-          color: {
-            on: "yellow",
-            off: "grey",
+          on: {
+            name: "mdi-video",
+            color: "yellow",
+          },
+          off: {
+            name: "mdi-video",
+            color: "grey",
           },
           position: {
             top: 89,
@@ -1026,12 +1099,13 @@ export default Vue.extend({
         },
         {
           id: "light 1",
-          on: "mdi-ceiling-light-outline",
-          off: "mdi-ceiling-light-outline",
-          status: false,
-          color: {
-            on: "yellow",
-            off: "grey",
+          on: {
+            name: "mdi-ceiling-light-outline",
+            color: "yellow",
+          },
+          off: {
+            name: "mdi-ceiling-light-outline",
+            color: "grey",
           },
           position: {
             top: 80,
@@ -1081,25 +1155,33 @@ export default Vue.extend({
         {
           id: "Room",
           status: true,
-          icon: {
-            on: "mdi-lightbulb",
-            off: "mdi-lightbulb-off",
-          },
-          iconColor: {
-            on: "red",
-            off: "yellow",
+          Options: {
+            icon: {
+              on: {
+                name: "mdi-lightbulb",
+                color: "red",
+              },
+              off: {
+                name: "mdi-lightbulb-off",
+                color: "yellow",
+              },
+            },
           },
         },
         {
           id: "1",
           status: false,
-          icon: {
-            on: "mdi-lightbulb",
-            off: "mdi-lightbulb-off",
-          },
-          iconColor: {
-            on: "red",
-            off: "yellow",
+          Options: {
+            icon: {
+              on: {
+                name: "mdi-lightbulb",
+                color: "red",
+              },
+              off: {
+                name: "mdi-lightbulb-off",
+                color: "yellow",
+              },
+            },
           },
         },
       ],
@@ -1114,25 +1196,33 @@ export default Vue.extend({
           {
             id: "Room",
             status: true,
-            icon: {
-              on: "mdi-lightbulb",
-              off: "mdi-lightbulb-off",
-            },
-            iconColor: {
-              on: "red",
-              off: "yellow",
+            Options: {
+              icon: {
+                on: {
+                  name: "mdi-lightbulb",
+                  color: "red",
+                },
+                off: {
+                  name: "mdi-lightbulb-off",
+                  color: "yellow",
+                },
+              },
             },
           },
           {
             id: "1",
             status: false,
-            icon: {
-              on: "mdi-lightbulb",
-              off: "mdi-lightbulb-off",
-            },
-            iconColor: {
-              on: "red",
-              off: "yellow",
+            Options: {
+              icon: {
+                on: {
+                  name: "mdi-lightbulb",
+                  color: "red",
+                },
+                off: {
+                  name: "mdi-lightbulb-off",
+                  color: "yellow",
+                },
+              },
             },
           },
         ],

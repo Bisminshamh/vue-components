@@ -5,8 +5,8 @@
 
       <v-list-item v-for="(item, i) in item.items" :key="i">
         <v-list-item-icon>
-          <v-icon :color="icon(item, 'icon_color')">
-            {{ icon(item, "icon") }}
+          <v-icon :color="icon(item, 'color')">
+            {{ icon(item, "name") }}
           </v-icon>
         </v-list-item-icon>
 
@@ -68,12 +68,12 @@ export default Vue.extend({
     icon(item: entitiesItem, name: icon_key): string {
       switch (item.options.isSwitchable) {
         case true:
-          return this.returnIconColor(item, name, item.value ? "on" : "off");
+          return this.Color_Icon(item, name, item.value ? "on" : "off");
         case false:
           switch (item.options.condition) {
             case "<":
               if (item.options.conditionValue)
-                return this.returnIconColor(
+                return this.Color_Icon(
                   item,
                   name,
                   item.value < item.options.conditionValue ? "on" : "off"
@@ -81,7 +81,7 @@ export default Vue.extend({
               break;
             case ">":
               if (item.options.conditionValue)
-                return this.returnIconColor(
+                return this.Color_Icon(
                   item,
                   name,
                   item.value > item.options.conditionValue ? "on" : "off"
@@ -89,18 +89,18 @@ export default Vue.extend({
               break;
             case "===":
               if (item.options.conditionValue)
-                return this.returnIconColor(
+                return this.Color_Icon(
                   item,
                   name,
                   item.value === item.options.conditionValue ? "on" : "off"
                 );
               break;
             default:
-              return this.returnIconColor(item, name, "on");
+              return this.Color_Icon(item, name, "on");
           }
           return "";
         default:
-          return this.returnIconColor(item, name, "on");
+          return this.Color_Icon(item, name, "on");
       }
     },
     /**
@@ -109,12 +109,13 @@ export default Vue.extend({
      * @param {icon_object_key} type Entity item value
      * @param {icon_key} name function executes bases on value of the name {icon/icon_color}
      */
-    returnIconColor(
+    Color_Icon(
       item: entitiesItem,
       name: icon_key,
       type: icon_object_key
     ): string {
-      return item.options[name][type];
+      // return item.options[name][type];
+      return item.options.icon[type][name];
     },
   },
 });
