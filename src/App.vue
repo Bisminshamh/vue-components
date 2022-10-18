@@ -876,6 +876,8 @@ export default Vue.extend({
     MapItem: {
       title: "Map",
       options: {
+        header: false,
+        height: "50vh",
         style: {
           v_card: {
             outlined: true,

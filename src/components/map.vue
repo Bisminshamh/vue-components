@@ -1,10 +1,17 @@
 <template>
   <v-card
-    height="500px"
+    :height="item.options.height"
     v-bind="item.options.style ? item.options.style.v_card : ''"
+    style="z-index: 0"
   >
-    <v-card-title>{{ item.title }}</v-card-title>
-    <l-map :zoom="zoom" :center="center" :bounds="bounds">
+    <v-card-title v-if="item.options.header">{{ item.title }}</v-card-title>
+    <l-map
+      :zoom="zoom"
+      :center="center"
+      :bounds="bounds"
+      :worldCopyJump="true"
+      :minZoom="3"
+    >
       <l-tile-layer
         :url="tileProvider.url"
         :attribution="tileProvider.attribution"
@@ -15,7 +22,9 @@
           :key="i"
           :lat-lng="[item.lat, item.long]"
           :radius="7"
-          color="rgb(255,85,0)"
+          :color="item.isOnline ? 'green' : 'red'"
+          :fillColor="item.isOnline ? 'green' : 'red'"
+          :fillOpacity="1"
         >
           <l-tooltip>
             <!-- for tooltip -->
@@ -73,7 +82,11 @@ export default Vue.extend({
         lat_long.push([device.lat, device.long]);
       });
       if (lat_long.length > 0) return latLngBounds([lat_long]);
-      return latLngBounds([[25.2664, 76.7642]]);
+      //latlong bound for india
+      return latLngBounds([
+        [23.63936, 68.14712],
+        [28.20453, 97.34466],
+      ]);
     },
   },
 });
