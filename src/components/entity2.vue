@@ -4,7 +4,7 @@
       <v-list-item>
         <v-list-item-icon>
           <v-icon
-            :size="item.options.icon.icon_size"
+            :size="item.options.icon.size"
             :color="
               item.value
                 ? item.options.icon.on.color
