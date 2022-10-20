@@ -345,7 +345,7 @@ export default Vue.extend({
           return this.emit({ type: this.isMicOn ? "micOn" : "micOff" });
 
         case "fullscreen":
-          return this.emit({ type: this.isFullscreen ? "enterFullscreen" : "exitFullscreen" });
+          return this.emit({ type: name, value: this.isFullscreen });
 
         default:
           return this.emit({ type: name });
@@ -356,7 +356,7 @@ export default Vue.extend({
      * @param {object} data data for event
      * @public
      */
-    emit(data: { type: string; value?: number }) {
+    emit(data: { type: string; value?: number | boolean }) {
       /** Triggered when button is clicked
        * @event control
        * @type {Event}
