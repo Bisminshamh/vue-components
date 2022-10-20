@@ -232,6 +232,12 @@ export default Vue.extend({
       } else this.isMuted = true;
       this.controlEvent("volume");
     },
+    /**
+     * watch for isFullscreen prop change
+     */
+    isFullscreen(): void {
+      this.controlEvent("fullscreen");
+    },
   },
   methods: {
     /**
@@ -333,10 +339,13 @@ export default Vue.extend({
           return this.emit({ type: this.isMuted ? "muted" : "unMuted" });
 
         case "volume":
-          return this.emit({ type: "volume", value: this.volume });
+          return this.emit({ type: name, value: this.volume });
 
         case "mic":
           return this.emit({ type: this.isMicOn ? "micOn" : "micOff" });
+
+        case "fullscreen":
+          return this.emit({ type: this.isFullscreen ? "enterFullscreen" : "exitFullscreen" });
 
         default:
           return this.emit({ type: name });
