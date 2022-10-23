@@ -1,38 +1,27 @@
 <template>
-  <v-card v-bind="item.options.style.v_card">
+  <v-card v-bind="cardStyle ? cardStyle : ''">
     <v-list>
       <v-list-item>
         <v-list-item-icon>
-          <v-icon
-            :size="item.options.icon.size"
-            :color="
-              item.value
-                ? item.options.icon.on.color
-                : item.options.icon.off.color
-            "
-          >
-            {{
-              item.value
-                ? item.options.icon.on.name
-                : item.options.icon.off.name
-            }}
+          <v-icon :size="42" :color="item.value ? 'iconOn' : 'iconOff'">
+            {{ item.value ? item.icon.true : item.icon.false }}
           </v-icon>
         </v-list-item-icon>
 
         <v-list-item-content>
           <v-list-item-title
             class="text-xl-body-1"
-            v-text="item.name"
+            v-text="item.friendlyName"
           ></v-list-item-title>
         </v-list-item-content>
 
-        <v-list-item-action v-if="item.options.isSwitchable">
+        <v-list-item-action v-if="item.isSwitchable">
           <v-switch @change="emit(item)" v-model="value"></v-switch>
         </v-list-item-action>
         <v-list-item-action>
           <v-chip outlined>
             <v-list-item-action-text class="text-h6"
-              >{{ item.options.text.custom ? transform(item) : item.value }}
+              >{{ transform(item) }}
             </v-list-item-action-text>
           </v-chip>
         </v-list-item-action>
@@ -58,6 +47,15 @@ export default Vue.extend({
       required: true,
       type: Object as PropType<entity2>,
     },
+    cardStyle: {
+      required: false,
+      type: Object,
+    },
+    isSwitchable: {
+      default: false,
+      required: false,
+      type: Boolean,
+    },
   },
   computed: {
     value: {
@@ -75,9 +73,13 @@ export default Vue.extend({
     },
     transform(item: entity2): string {
       if (typeof item.value === "number")
-        return Math.round(item.value) + " " + (item.unit ? item.unit : "");
+        return (
+          Number(item.value).toFixed(item.roundTo) +
+          " " +
+          (item.unit ? item.unit : "")
+        );
       else {
-        return item.value ? item.options.text.true : item.options.text.false;
+        return item.value ? item.text.true : item.text.false;
       }
     },
   },

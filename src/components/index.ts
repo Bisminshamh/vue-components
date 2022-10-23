@@ -24,3 +24,8 @@ export { default as Sensor } from './sensor.vue';
 export { default as VerticalStack } from './verticalStack.vue';
 export { default as PictureGlance } from './pictureGlance.vue';
 export { default as Conditional } from './conditional.vue';
+export { default as RadialBar } from './radialBar.vue';
+export { default as Analog } from './analog.vue';
+export { default as Digital } from './digital.vue';
+export { default as Toggle } from './toggle.vue';
+export { default as Accelerometer } from './accelerometer.vue';

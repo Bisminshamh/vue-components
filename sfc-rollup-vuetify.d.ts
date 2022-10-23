@@ -33,3 +33,8 @@ export const Sensor: VueConstructor<Vue>;
 export const VerticalStack: VueConstructor<Vue>;
 export const PictureGlance: VueConstructor<Vue>;
 export const Conditional: VueConstructor<Vue>;
+export const RadialBar: VueConstructor<Vue>;
+export const Analog: VueConstructor<Vue>;
+export const Digital: VueConstructor<Vue>;
+export const Toggle: VueConstructor<Vue>;
+export const Accelerometer: VueConstructor<Vue>;

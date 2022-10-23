@@ -1,6 +1,6 @@
 <template>
   <v-card
-    v-bind="item.options.style ? item.options.style.v_card : ''"
+    v-bind="cardStyle ? cardStyle : ''"
     :id="`media_player${item.id}`"
     class="d-flex flex-column justify-center"
   >
@@ -107,7 +107,7 @@
         <!-- 
         @slot for passing custom Html Elements
         -->
-        <slot name="media"> </slot>
+        <slot> </slot>
       </v-card>
     </div>
     <v-card-actions :class="isFullscreen ? 'video-controls py-0' : 'py-1'">
@@ -135,7 +135,7 @@
 
           <!-- speaker -->
           <v-btn
-            v-if="item.options.volume"
+            v-if="options.volume"
             x-small
             @click="isMuted = !isMuted"
             icon
@@ -149,7 +149,7 @@
       <!-- mic -->
       <v-btn
         class="pl-4"
-        v-if="item.options.mic"
+        v-if="options.mic"
         x-small
         @click="isMicOn = !isMicOn"
         icon
@@ -196,6 +196,14 @@ export default Vue.extend({
     item: {
       required: true,
       type: Object as PropType<mediaItem>,
+    },
+    options: {
+      required: true,
+      type: Object,
+    },
+    cardStyle: {
+      required: false,
+      type: Object,
     },
   },
   filters: {
@@ -247,14 +255,14 @@ export default Vue.extend({
     cameraControlState(name: string): boolean {
       switch (name) {
         case "PT":
-          return this.item.options.PT === true;
+          return this.options.PT === true;
 
         case "zoom":
-          return this.item.options.zoom === true;
+          return this.options.zoom === true;
 
         case "reset":
           return (
-            this.item.options.zoom === true || this.item.options.PT === true
+            this.options.zoom === true || this.options.PT === true
           );
 
         default:

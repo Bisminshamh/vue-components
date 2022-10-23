@@ -22,10 +22,13 @@
             cols="12"
             xl="4"
           >
-            <Media :item="media" @control="controlEvent">
-              <template v-slot:[media.slotname]>
-                <v-img :id="media.id" :src="media.src"></v-img>
-              </template>
+            <Media
+              :item="media"
+              @control="controlEvent"
+              :cardStyle="radialBarItem.cardStyle"
+              :options="media.options"
+            >
+              <v-img :id="media.id" :src="media.src"></v-img>
             </Media>
           </v-col>
           <v-col
@@ -91,7 +94,51 @@
             cols="12"
             xl="4"
           >
-            <Entity2 :item="entity2" />
+            <Entity2
+              :item="entity2"
+              :cardStyle="entity2.cardStyle"
+              :isSwitchable="item.isSwitchable"
+            />
+          </v-col>
+          <v-col
+            v-if="selectedComponent === 'Toggle'"
+            lg="4"
+            sm="6"
+            md="6"
+            cols="12"
+            xl="4"
+          >
+            <Toggle :item="toggle" :cardStyle="toggle.cardStyle" />
+          </v-col>
+          <v-col
+            v-if="selectedComponent === 'Analog'"
+            lg="4"
+            sm="6"
+            md="6"
+            cols="12"
+            xl="4"
+          >
+            <Analog :item="analog" :cardStyle="analog.cardStyle" />
+          </v-col>
+          <v-col
+            v-if="selectedComponent === 'Digital'"
+            lg="4"
+            sm="6"
+            md="6"
+            cols="12"
+            xl="4"
+          >
+            <Digital :item="digital" :cardStyle="digital.cardStyle" />
+          </v-col>
+          <v-col
+            v-if="selectedComponent === 'Accel'"
+            lg="4"
+            sm="6"
+            md="6"
+            cols="12"
+            xl="4"
+          >
+            <Accel :item="accel" :cardStyle="accel.cardStyle" />
           </v-col>
           <v-col
             v-if="selectedComponent === 'Entities'"
@@ -210,7 +257,20 @@
             cols="12"
             xl="4"
           >
-            <Gauge :item="gaugeItem" />
+            <Gauge :item="gaugeItem" :cardStyle="gaugeItem.cardStyle" />
+          </v-col>
+          <v-col
+            v-if="selectedComponent === 'RadialBar'"
+            lg="4"
+            sm="6"
+            md="6"
+            cols="12"
+            xl="4"
+          >
+            <RadialBar
+              :item="radialBarItem"
+              :cardStyle="radialBarItem.cardStyle"
+            />
           </v-col>
           <v-col
             v-if="selectedComponent === 'HistoryGraph'"
@@ -352,6 +412,7 @@ import Graph from "./components/graph.vue";
 import Audio from "./components/audio.vue";
 import HorizontalStack from "@/components/horizontalStack.vue";
 import Gauge from "./components/gauge.vue";
+import RadialBar from "./components/radialBar.vue";
 import HistoryGraph from "@/components/historyGraph.vue";
 import Map from "./components/map.vue";
 import PictureElement from "@/components/pictureElement.vue";
@@ -359,6 +420,10 @@ import Sensor from "./components/sensor.vue";
 import VerticalStack from "@/components/verticalStack.vue";
 import PictureGlance from "./components/pictureGlance.vue";
 import Conditional from "./components/conditional.vue";
+import Toggle from "./components/toggle.vue";
+import Analog from "./components/analog.vue";
+import Digital from "./components/digital.vue";
+import Accel from "./components/accelerometer.vue";
 
 export default Vue.extend({
   name: "App",
@@ -389,6 +454,11 @@ export default Vue.extend({
     VerticalStack,
     PictureGlance,
     Conditional,
+    RadialBar,
+    Toggle,
+    Analog,
+    Digital,
+    Accel,
   },
 
   data: () => ({
@@ -418,26 +488,28 @@ export default Vue.extend({
       "VerticalStack",
       "PictureGlance",
       "Conditional",
+      "RadialBar",
+      "Toggle",
+      "Analog",
+      "Digital",
+      "Accel",
     ],
     selectedComponent: "MediaCard",
     media: {
       id: "1",
       src: "https://cdn.vuetifyjs.com/images/cards/cooking.png",
       title: "camera 1",
-      slotname: "media",
       options: {
         PT: true,
         zoom: true,
         mic: true,
         volume: true,
-        style: {
-          v_card: {
-            outlined: true,
-            rounded: "lg",
-          },
-        },
       },
-    } as mediaItem,
+      cardStyle: {
+        outlined: true,
+        rounded: "lg",
+      },
+    },
     video: {
       id: "2",
       type: "video/mp4",
@@ -513,33 +585,81 @@ export default Vue.extend({
       },
     } as entity,
     entity2: {
-      name: "Ups O/p Current",
+      friendlyName: "Ups O/p Current",
       value: true,
-      options: {
-        isSwitchable: true,
-        icon: {
-          on: {
-            name: "mdi-current-ac",
-            color: "red",
-          },
-          off: {
-            name: "mdi-current-ac",
-            color: "grey",
-          },
-          size: 32,
-        },
-        text: {
-          custom: true,
-          true: "On",
-          false: "Off",
-        },
-        style: {
-          v_card: {
-            outlined: true,
-            rounded: "lg",
-          },
+      roundTo: 2,
+      isSwitchable: true,
+      icon: {
+        true: "mdi-current-ac",
+        false: "mdi-current-ac",
+      },
+      text: {
+        true: "On",
+        false: "Off",
+      },
+      cardStyle: {
+        outlined: true,
+        rounded: "lg",
+      },
+    },
+    toggle: {
+      friendlyName: "Light",
+      value: true,
+      roundTo: 2,
+      isSwitchable: true,
+      icon: {
+        true: "mdi-current-ac",
+        false: "mdi-current-ac",
+      },
+      text: {
+        true: "On",
+        false: "Off",
+      },
+      style: {
+        v_card: {
+          outlined: true,
+          rounded: "lg",
         },
       },
+    },
+    analog: {
+      friendlyName: "O/p Current",
+      value: 1.23655,
+      roundTo: 2,
+      unit: "A",
+      cardStyle: {
+        outlined: true,
+        rounded: "lg",
+      },
+    },
+
+    digital: {
+      friendlyName: "O/p Current",
+      value: 1.23655,
+      roundTo: 2,
+      unit: "A",
+      cardStyle: {
+        outlined: true,
+        rounded: "lg",
+      },
+      icon: {
+        true: "mdi-current-ac",
+        false: "mdi-current-ac",
+      },
+      text: {
+        true: "On",
+        false: "Off",
+      },
+    },
+    accel: {
+      friendlyName: "Accelerometer",
+      value: [1.23655, 3.22, 5.55],
+      roundTo: 3,
+      cardStyle: {
+        outlined: true,
+        rounded: "lg",
+      },
+      icon: "mdi-axis-arrow",
     },
     entities: {
       title: "Name",
@@ -831,19 +951,23 @@ export default Vue.extend({
       totalItems: 3,
     } as horizontal_card,
     gaugeItem: {
-      title: "Gauge",
       value: 76,
       unit: "C",
-      name: "Temperature",
-      options: {
-        style: {
-          v_card: {
-            outlined: true,
-            rounded: "lg",
-          },
-        },
+      friendlyName: "Temperature",
+      cardStyle: {
+        outlined: true,
+        rounded: "lg",
       },
-    } as gauge,
+    },
+    radialBarItem: {
+      value: 76,
+      unit: "C",
+      friendlyName: "Temperature",
+      cardStyle: {
+        outlined: true,
+        rounded: "lg",
+      },
+    },
     HistoryGraphItem: {
       title: "HistoryGraph",
       data: [

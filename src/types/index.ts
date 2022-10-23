@@ -59,29 +59,52 @@ export interface entity {
 //<-----entity----->
 //<-----entity2----->
 export interface entity2 {
-    name: string,
+    friendlyName: string,
     value: boolean,
+    roundTo: number,
     unit?: string,
-    options: {
-        isSwitchable: boolean,
-        icon: {
-            on: {
-                name: string,
-                color: string,
-            },
-            off: {
-                name: string,
-                color: string,
-            },
-            size: number,
-        },
-        text: {
-            custom: boolean,
-            true: string,
-            false: string,
-        },
+    isSwitchable: boolean,
+    icon: {
+        true: string,
+        false: string
     },
-    vuetifyStyle: Object,
+    text: {
+        true: string,
+        false: string,
+    },
+    style: Object,
+}
+export interface toggle {
+    friendlyName: string,
+    value: boolean,
+    roundTo: number,
+    unit?: string,
+    icon: {
+        true: string,
+        false: string
+    },
+    text: {
+        true: string,
+        false: string,
+    }
+}
+export interface analog {
+    friendlyName: string,
+    value: boolean,
+    roundTo: number,
+    unit?: string,
+}
+export interface digital {
+    friendlyName: string,
+    value: boolean,
+    text: {
+        true: string,
+        false: string
+    },
+    icon: {
+        true: string,
+        false: string
+    }
 }
 //<-----entity2----->
 //<-----entities----->
@@ -223,13 +246,9 @@ export interface horizontal_card {
 //<-----horizontal card----->
 //<-----gauge card----->
 export interface gauge {
-    title: string,
     value: number,
     unit: string,
-    name: string,
-    options: {
-        style: Object
-    }
+    friendlyName: string
 }
 //<-----gauge card----->
 
