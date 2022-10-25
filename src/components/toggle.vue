@@ -27,6 +27,11 @@ import Vue, { PropType } from "vue";
  */
 export default Vue.extend({
   name: "Toggle",
+  data() {
+    return {
+      val: false,
+    };
+  },
 
   props: {
     /**
@@ -46,14 +51,14 @@ export default Vue.extend({
       get() {
         return this.item.value;
       },
-      set(v) {
-        console.log(v);
+      set(v: boolean) {
+        this.val = v;
       },
     },
   },
   methods: {
     emit(data: any) {
-      this.$emit("change", data);
+      this.$emit("change", { item: data, value: this.val });
     },
     dummy(item: toggle) {
       console.log(item);

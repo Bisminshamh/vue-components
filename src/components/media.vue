@@ -112,7 +112,7 @@
     </div>
     <v-card-actions :class="isFullscreen ? 'video-controls py-0' : 'py-1'">
       <v-card-title class="py-0 pl-0">{{
-        item.title | capitalize
+        item.friendlyName | capitalize
       }}</v-card-title>
 
       <v-spacer> </v-spacer>
@@ -134,12 +134,7 @@
           ></v-slider>
 
           <!-- speaker -->
-          <v-btn
-            v-if="options.volume"
-            x-small
-            @click="isMuted = !isMuted"
-            icon
-          >
+          <v-btn v-if="options.volume" x-small @click="isMuted = !isMuted" icon>
             <v-icon v-if="isMuted">mdi-volume-off</v-icon>
             <v-icon v-else>mdi-volume-high</v-icon>
           </v-btn>
@@ -261,9 +256,7 @@ export default Vue.extend({
           return this.options.zoom === true;
 
         case "reset":
-          return (
-            this.options.zoom === true || this.options.PT === true
-          );
+          return this.options.zoom === true || this.options.PT === true;
 
         default:
           return false;

@@ -43,7 +43,17 @@ export default Vue.extend({
   },
   methods: {
     transform(item: analog): string {
-      return `${Number(item.value).toFixed(item.roundTo)}  ${item.unit}`;
+      if (item.roundTo && item.unit)
+        return `${parseFloat(this.item.value.toFixed(this.item.roundTo))}  ${
+          item.unit
+        }`;
+      if (item.roundTo)
+        return `${parseFloat(this.item.value.toFixed(this.item.roundTo))}`;
+      if (item.unit)
+        return `${parseFloat(this.item.value.toFixed(this.item.roundTo))}  ${
+          item.unit
+        }`;
+      return `${item.value}`;
     },
   },
 });

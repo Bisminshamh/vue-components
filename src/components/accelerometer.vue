@@ -36,7 +36,7 @@
               :content="`X : ${transform(item, 0)}`"
               color="transparent"
             >
-              <v-icon size="100" v-text="item.icon"> </v-icon>
+              <v-icon size="100">mdi-axis-arrow </v-icon>
             </v-badge>
           </v-badge>
         </v-badge>
@@ -72,8 +72,8 @@ export default Vue.extend({
     },
   },
   methods: {
-    transform(item: any, index: number): string {
-      return `${Number(item.value[index]).toFixed(item.roundTo)}`;
+    transform(item: any, index: number): number {
+      return parseFloat(item.value[index].toFixed(item.roundTo));
     },
   },
 });

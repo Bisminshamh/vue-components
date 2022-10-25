@@ -7,7 +7,7 @@
   </v-card>
 </template>
 <script lang="ts">
-import { gauge } from "@/types";
+import { radialBar } from "@/types";
 import Vue, { PropType } from "vue";
 import VueApexCharts from "vue-apexcharts";
 /**
@@ -26,10 +26,32 @@ export default Vue.extend({
      */
     item: {
       required: true,
-      type: Object as PropType<gauge>,
+      type: Object as PropType<radialBar>,
     },
     cardStyle: {
       required: false,
+      type: Object,
+    },
+    value: {
+      required: false,
+      default() {
+        return {
+          show: false,
+          offsetY: -20,
+          fontSize: "2rem",
+        };
+      },
+      type: Object,
+    },
+    dataLabels: {
+      required: false,
+      default() {
+        return {
+          show: false,
+          offsetY: 0,
+          fontSize: "2rem",
+        };
+      },
       type: Object,
     },
   },
@@ -64,22 +86,34 @@ export default Vue.extend({
             },
             dataLabels: {
               name: {
-                show: false,
-                offsetY: 0,
-                fontSize: "2rem",
+                show: this.dataLabels.show,
+                offsetY: this.dataLabels.offsetY,
+                fontSize: this.dataLabels.fontSize,
                 color: "black",
                 fontWeight: "normal",
                 formatter: () => {
-                  return this.item.name;
+                  return this.item.friendlyName;
                 },
               },
               value: {
-                show: false,
-                offsetY: 0,
-                fontSize: "0px",
-                color: "white",
-                formatter: (value: any) => {
-                  return `${value} ${this.item.unit}`;
+                show: this.value.show,
+                offsetY: this.value.offsetY,
+                fontSize: this.value.fontSize,
+                color: "black",
+                formatter: () => {
+                  if (this.item.roundTo && this.item.unit)
+                    return `${parseFloat(
+                      this.item.value.toFixed(this.item.roundTo)
+                    )}  ${this.item.unit}`;
+                  if (this.item.roundTo)
+                    return `${parseFloat(
+                      this.item.value.toFixed(this.item.roundTo)
+                    )}`;
+                  if (this.item.unit)
+                    return `${parseFloat(
+                      this.item.value.toFixed(this.item.roundTo)
+                    )}  ${this.item.unit}`;
+                  return `${this.item.value}`;
                 },
               },
             },

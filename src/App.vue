@@ -494,11 +494,11 @@ export default Vue.extend({
       "Digital",
       "Accel",
     ],
-    selectedComponent: "MediaCard",
+    selectedComponent: "Gauge",
     media: {
       id: "1",
       src: "https://cdn.vuetifyjs.com/images/cards/cooking.png",
-      title: "camera 1",
+      friendlyName: "camera 1",
       options: {
         PT: true,
         zoom: true,
@@ -514,14 +514,18 @@ export default Vue.extend({
       id: "2",
       type: "video/mp4",
       src: "https://download.blender.org/peach/bigbuckbunny_movies/big_buck_bunny_720p_stereo.ogg",
-      title: "camera 2",
+      friendlyName: "camera 2",
       options: {
         PT: true,
         zoom: false,
         mic: false,
         volume: true,
       },
-    } as mediaItem,
+      cardStyle: {
+        outlined: true,
+        rounded: "lg",
+      },
+    },
     alarmItem: {
       title: "Alarm",
       armed: false,
@@ -960,8 +964,9 @@ export default Vue.extend({
       },
     },
     radialBarItem: {
-      value: 76,
-      unit: "C",
+      value: 76.33,
+      unit: "°C",
+      roundTo: 2,
       friendlyName: "Temperature",
       cardStyle: {
         outlined: true,

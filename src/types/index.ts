@@ -90,7 +90,7 @@ export interface toggle {
 }
 export interface analog {
     friendlyName: string,
-    value: boolean,
+    value: number,
     roundTo: number,
     unit?: string,
 }
@@ -249,6 +249,12 @@ export interface gauge {
     value: number,
     unit: string,
     friendlyName: string
+}
+export interface radialBar {
+    value: number,
+    unit?: string,
+    friendlyName: string,
+    roundTo?: number
 }
 //<-----gauge card----->
 

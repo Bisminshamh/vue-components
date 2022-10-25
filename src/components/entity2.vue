@@ -72,15 +72,17 @@ export default Vue.extend({
       this.$emit("change", data);
     },
     transform(item: entity2): string {
-      if (typeof item.value === "number")
-        return (
-          Number(item.value).toFixed(item.roundTo) +
-          " " +
-          (item.unit ? item.unit : "")
-        );
-      else {
+      if (typeof item.value != "number")
         return item.value ? item.text.true : item.text.false;
-      }
+
+      if (item.roundTo && item.unit)
+        return `${Number(item.value).toFixed(item.roundTo)}  ${item.unit}`;
+
+      if (item.roundTo) return `${Number(item.value).toFixed(item.roundTo)}`;
+
+      if (item.unit) return `${Number(item.value)}  ${item.unit}`;
+
+      return `${item.value}`;
     },
   },
 });
