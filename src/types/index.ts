@@ -1,6 +1,6 @@
 //<----MediaCard----->
 export interface mediaItem {
-    id: string,
+    cameraId: string,
     type: string;
     src: string;
     title: string;

@@ -496,7 +496,7 @@ export default Vue.extend({
     ],
     selectedComponent: "Gauge",
     media: {
-      id: "1",
+      cameraId: "1",
       src: "https://cdn.vuetifyjs.com/images/cards/cooking.png",
       friendlyName: "camera 1",
       options: {
@@ -511,7 +511,7 @@ export default Vue.extend({
       },
     },
     video: {
-      id: "2",
+      cameraId: "2",
       type: "video/mp4",
       src: "https://download.blender.org/peach/bigbuckbunny_movies/big_buck_bunny_720p_stereo.ogg",
       friendlyName: "camera 2",

@@ -1,7 +1,7 @@
 <template>
   <v-card
     v-bind="cardStyle ? cardStyle : ''"
-    :id="`media_player${item.id}`"
+    :id="`media_player${item.cameraId}`"
     class="d-flex flex-column justify-center"
   >
     <div class="d-flex flex-column justify-space-around flex-grow-1">
@@ -268,7 +268,7 @@ export default Vue.extend({
      * @public
      */
     fullscreen(action: string): void {
-      this.mediaPlayer = document.getElementById(`media_player${this.item.id}`);
+      this.mediaPlayer = document.getElementById(`media_player${this.item.cameraId}`);
       if (this.mediaPlayer) {
         this.mediaPlayer.onfullscreenchange = () => {
           if (document.fullscreenElement) this.isFullscreen = true;
