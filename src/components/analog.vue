@@ -3,10 +3,15 @@
     v-bind="cardStyle ? cardStyle : ''"
     class="d-flex flex-column justify-center"
   >
-    <v-card-title v-text="item.friendlyName"></v-card-title>
+    <v-card-title
+      class="py-2"
+      :style="`font-size:${font.title}`"
+      v-text="item.friendlyName"
+    ></v-card-title>
     <v-card-text>
       <v-card-text
-        class="d-flex flex-row justify-center text-h2"
+      
+        class="d-flex flex-row justify-center text-h2 py-10"
         v-text="transform(item)"
       ></v-card-text>
       <!-- <v-row justify="center">
@@ -39,6 +44,16 @@ export default Vue.extend({
     cardStyle: {
       required: false,
       type: Object,
+    },
+    font: {
+      required: false,
+      type: Object,
+      default() {
+        return {
+          title: "",
+          subtitle: "",
+        };
+      },
     },
   },
   methods: {

@@ -3,16 +3,31 @@
     v-bind="cardStyle ? cardStyle : ''"
     class="d-flex flex-column justify-center"
   >
-    <v-card-title v-text="item.friendlyName"></v-card-title>
+    <v-card-title
+      class="pb-0"
+      :style="`font-size:${font.title}`"
+      v-text="item.friendlyName"
+    ></v-card-title>
     <v-card-text>
       <v-row justify="center">
-        <v-switch @change="emit(item)" v-model="value" inset></v-switch>
+        <v-switch
+          :color="item.value ? 'iconOn' : 'iconOff'"
+          @change="emit(item)"
+          v-model="value"
+          inset
+        ></v-switch>
       </v-row>
       <v-row justify="center">
         <v-col class="d-flex justify-center">
-          <v-card-subtitle class="pl-0 text-subtitle-2">{{
-            item.value ? item.text.true : item.text.false
-          }}</v-card-subtitle>
+          <v-card-subtitle
+            :style="`font-size:${font.subtitle};
+            font-weight: bold;
+            color:${item.value ? 'green' : 'red'}`"
+            class=" py-0 text-subtitle-2"
+            >{{
+              item.value ? item.text.true : item.text.false
+            }}</v-card-subtitle
+          >
         </v-col>
       </v-row>
     </v-card-text>
@@ -44,6 +59,16 @@ export default Vue.extend({
     cardStyle: {
       required: false,
       type: Object,
+    },
+    font: {
+      required: false,
+      type: Object,
+      default() {
+        return {
+          title: "",
+          subtitle: "",
+        };
+      },
     },
   },
   computed: {

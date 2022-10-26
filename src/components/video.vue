@@ -39,7 +39,7 @@ export default Vue.extend({
     /**
      * getting the video element
      */
-    this.video = document.getElementById(this.item.id);
+    this.video = document.getElementById(this.item.cameraId);
     if (this.video) this.video.muted = true;
   },
   methods: {

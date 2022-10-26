@@ -5,7 +5,7 @@
   >
     <v-card-title v-text="item.friendlyName"></v-card-title>
     <v-card-text>
-      <v-row justify="center" class="ma-10">
+      <v-row justify="center" class="pa-9">
         <!-- <div class="customPosition x_axis">
           <v-card-title v-text="`X : ${transform(item, 0)}`"></v-card-title>
         </div>
@@ -18,25 +18,28 @@
         <v-icon size="100" v-text="item.icon"> </v-icon> -->
 
         <v-badge
-          offset-x="90"
-          offset-y="-15"
+          offset-x="80"
+          offset-y="-10"
           :content="`Z : ${transform(item, 2)}`"
           color="transparent"
         >
           <v-badge
-            offset-y="5"
+            offset-y="15"
+              offset-x="-5"
+
             bottom
             :content="`Y : ${transform(item, 1)}`"
             color="transparent"
           >
             <v-badge
-              offset-y="5"
+              offset-y="15"
+              offset-x="-5"
               bottom
               left
               :content="`X : ${transform(item, 0)}`"
               color="transparent"
             >
-              <v-icon size="100">mdi-axis-arrow </v-icon>
+              <v-icon size="80">mdi-axis-arrow </v-icon>
             </v-badge>
           </v-badge>
         </v-badge>
@@ -53,11 +56,7 @@ import Vue, { PropType } from "vue";
  */
 export default Vue.extend({
   name: "Accell",
-  data() {
-    return {
-      x: true,
-    };
-  },
+
   props: {
     /**
      * item for Digital
@@ -73,7 +72,8 @@ export default Vue.extend({
   },
   methods: {
     transform(item: any, index: number): number {
-      return parseFloat(item.value[index].toFixed(item.roundTo));
+      const val = item.value[index] * item.multiplyBy;
+      return parseFloat(val.toFixed(item.roundTo));
     },
   },
 });

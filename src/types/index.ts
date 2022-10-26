@@ -248,13 +248,19 @@ export interface horizontal_card {
 export interface gauge {
     value: number,
     unit: string,
-    friendlyName: string
+    friendlyName: string,
+    multiplyBy: number,
+    maxRange: number
+
+
 }
 export interface radialBar {
     value: number,
     unit?: string,
     friendlyName: string,
-    roundTo?: number
+    roundTo?: number,
+    multiplyBy: number,
+    maxRange: number
 }
 //<-----gauge card----->
 

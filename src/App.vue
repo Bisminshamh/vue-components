@@ -3,6 +3,7 @@
     <v-main>
       <v-container>
         <v-row justify="center" class="ma-12">
+
           <v-col lg="4" sm="6" md="6" cols="12" xl="4">
             <v-select
               :items="items"
@@ -368,7 +369,6 @@
 <script lang="ts">
 import Vue from "vue";
 import {
-  mediaItem,
   alarm,
   button,
   slider,
@@ -383,7 +383,6 @@ import {
   graph,
   audioItem,
   horizontal_card,
-  gauge,
   history_graph,
   map,
   pictureElement,
@@ -494,7 +493,7 @@ export default Vue.extend({
       "Digital",
       "Accel",
     ],
-    selectedComponent: "Gauge",
+    selectedComponent: "HorizontalStack",
     media: {
       cameraId: "1",
       src: "https://cdn.vuetifyjs.com/images/cards/cooking.png",
@@ -664,6 +663,7 @@ export default Vue.extend({
         rounded: "lg",
       },
       icon: "mdi-axis-arrow",
+      multiplyBy: 2,
     },
     entities: {
       title: "Name",
@@ -955,19 +955,24 @@ export default Vue.extend({
       totalItems: 3,
     } as horizontal_card,
     gaugeItem: {
-      value: 76,
+      value: 400,
       unit: "C",
+      roundTo: 2,
       friendlyName: "Temperature",
+      multiplyBy: 1,
+      maxRange: 500,
       cardStyle: {
         outlined: true,
         rounded: "lg",
       },
     },
     radialBarItem: {
-      value: 76.33,
+      value: 900,
       unit: "°C",
       roundTo: 2,
       friendlyName: "Temperature",
+      multiplyBy: 1,
+      maxRange: 100,
       cardStyle: {
         outlined: true,
         rounded: "lg",

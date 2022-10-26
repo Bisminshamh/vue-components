@@ -33,8 +33,8 @@ export default Vue.extend({
       required: false,
       default() {
         return {
-          show: false,
-          offsetY: -20,
+          show: true,
+          offsetY: 20,
           fontSize: "2rem",
         };
       },
@@ -54,13 +54,16 @@ export default Vue.extend({
   },
   data() {
     return {
-      series: [this.item.value],
+      series: [
+        (this.item.value * this.item.multiplyBy * 100) / this.item.maxRange,
+      ],
       chartOptions: {
         chart: {
           type: "radialBar",
         },
         plotOptions: {
           radialBar: {
+            range: [0, 1000],
             hollow: {
               margin: 0,
               size: "70%",
@@ -104,18 +107,14 @@ export default Vue.extend({
               },
               value: {
                 formatter: () => {
+                  const val = this.item.value * this.item.multiplyBy;
                   if (this.item.roundTo && this.item.unit)
-                    return `${parseFloat(
-                      this.item.value.toFixed(this.item.roundTo)
-                    )}  ${this.item.unit}`;
+                    return `${parseFloat(val.toFixed(this.item.roundTo))}  ${
+                      this.item.unit
+                    }`;
                   if (this.item.roundTo)
-                    return `${parseFloat(
-                      this.item.value.toFixed(this.item.roundTo)
-                    )}`;
-                  if (this.item.unit)
-                    return `${parseFloat(
-                      this.item.value.toFixed(this.item.roundTo)
-                    )}  ${this.item.unit}`;
+                    return `${parseFloat(val.toFixed(this.item.roundTo))}`;
+                  if (this.item.unit) return `${val}  ${this.item.unit}`;
                   return `${this.item.value}`;
                 },
                 color: "black",
@@ -135,6 +134,12 @@ export default Vue.extend({
         },
       },
     };
+  },
+  watch: {
+    //update chart series
+    "item.value"(val: any) {
+      this.series = [(val * this.item.multiplyBy * 100) / this.item.maxRange];
+    },
   },
 });
 </script>

@@ -11,8 +11,11 @@ export default new Vuetify({
                 secondary: '#b0bec5',
                 accent: '#8c9eff',
                 error: '#b71c1c',
-                iconOn: "#3f51b5",
-                iconOff: "#808080"
+                iconOn: "#d40d21",
+                iconOff: "#3d3a3a",
+                green: "#06b817",
+                red: "#b81206"
+
             },
         },
     },

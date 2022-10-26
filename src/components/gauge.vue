@@ -1,9 +1,13 @@
 <template>
   <v-card id="chart" v-bind="cardStyle ? cardStyle : ''">
-    <VueApexCharts :options="chartOptions" :series="series" />
-    <v-card-title class="pt-0 d-flex justify-center">{{
-      this.item.friendlyName
-    }}</v-card-title>
+    <v-card-title
+      class="py-0 pt-4"
+      :style="`font-size:${font.title}`"
+      v-text="item.friendlyName"
+    ></v-card-title>
+    <v-card-text class="pt-0">
+      <VueApexCharts :options="chartOptions" :series="series" />
+    </v-card-text>
   </v-card>
 </template>
 <script lang="ts">
@@ -36,7 +40,7 @@ export default Vue.extend({
       required: false,
       default() {
         return {
-          show: false,
+          show: true,
           offsetY: -20,
           fontSize: "2rem",
         };
@@ -54,14 +58,26 @@ export default Vue.extend({
       },
       type: Object,
     },
+    font: {
+      required: false,
+      type: Object,
+      default() {
+        return {
+          title: "",
+        };
+      },
+    },
   },
   data() {
     return {
-      series: [this.item.value],
+      series: [
+        (this.item.value * this.item.multiplyBy * 100) / this.item.maxRange,
+      ],
+
       chartOptions: {
         chart: {
           type: "radialBar",
-          offsetY: -10,
+          offsetY: -25,
           sparkline: {
             enabled: true,
           },
@@ -101,19 +117,15 @@ export default Vue.extend({
                 fontSize: this.value.fontSize,
                 color: "black",
                 formatter: () => {
+                  const val = this.item.value * this.item.multiplyBy;
                   if (this.item.roundTo && this.item.unit)
-                    return `${parseFloat(
-                      this.item.value.toFixed(this.item.roundTo)
-                    )}  ${this.item.unit}`;
+                    return `${parseFloat(val.toFixed(this.item.roundTo))}  ${
+                      this.item.unit
+                    }`;
                   if (this.item.roundTo)
-                    return `${parseFloat(
-                      this.item.value.toFixed(this.item.roundTo)
-                    )}`;
-                  if (this.item.unit)
-                    return `${parseFloat(
-                      this.item.value.toFixed(this.item.roundTo)
-                    )}  ${this.item.unit}`;
-                  return `${this.item.value}`;
+                    return `${parseFloat(val.toFixed(this.item.roundTo))}`;
+                  if (this.item.unit) return `${val}  ${this.item.unit}`;
+                  return `${val}`;
                 },
               },
             },
@@ -131,6 +143,12 @@ export default Vue.extend({
         },
       },
     };
+  },
+  watch: {
+    //update chart series
+    "item.value"(val: any) {
+      this.series = [(val * this.item.multiplyBy * 100) / this.item.maxRange];
+    },
   },
 });
 </script>

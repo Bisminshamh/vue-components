@@ -111,7 +111,7 @@
       </v-card>
     </div>
     <v-card-actions :class="isFullscreen ? 'video-controls py-0' : 'py-1'">
-      <v-card-title class="py-0 pl-0">{{
+      <v-card-title :style="`font-size:${font.title}`" class="py-0 pl-0">{{
         item.friendlyName | capitalize
       }}</v-card-title>
 
@@ -167,8 +167,7 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from "vue";
-import { mediaItem } from "../types/index.js";
+import Vue from "vue";
 /**
  * Generic Media card which provied custom controls
  * @displayName Media Card
@@ -190,15 +189,45 @@ export default Vue.extend({
      */
     item: {
       required: true,
-      type: Object as PropType<mediaItem>,
+      type: Object,
+      default() {
+        return {
+          cameraId: "1",
+          src: "https://cdn.vuetifyjs.com/images/cards/cooking.png",
+          friendlyName: "camera 1",
+        };
+      },
     },
     options: {
       required: true,
       type: Object,
+      default() {
+        return {
+          PT: true,
+          zoom: true,
+          mic: true,
+          volume: true,
+        };
+      },
     },
     cardStyle: {
       required: false,
       type: Object,
+      default() {
+        return {
+          outlined: true,
+          rounded: "lg",
+        };
+      },
+    },
+    font: {
+      required: false,
+      type: Object,
+      default() {
+        return {
+          title: "",
+        };
+      },
     },
   },
   filters: {
@@ -268,7 +297,9 @@ export default Vue.extend({
      * @public
      */
     fullscreen(action: string): void {
-      this.mediaPlayer = document.getElementById(`media_player${this.item.cameraId}`);
+      this.mediaPlayer = document.getElementById(
+        `media_player${this.item.cameraId}`
+      );
       if (this.mediaPlayer) {
         this.mediaPlayer.onfullscreenchange = () => {
           if (document.fullscreenElement) this.isFullscreen = true;
@@ -397,3 +428,10 @@ export default Vue.extend({
   content: none !important;
 }
 </style>
+<docs>
+The Media Card card is used to display camera live feeds with easy to use controls.
+### Features
+* Pan, Tilt, Zoom controls
+* Sound control
+* Full screen control
+</docs>

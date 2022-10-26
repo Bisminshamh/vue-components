@@ -11,22 +11,13 @@
         </v-list-item-icon>
 
         <v-list-item-content>
-          <v-list-item-title
-            class="text-xl-body-1"
-            v-text="item.title"
-          ></v-list-item-title>
+          <v-list-item-title class="text-xl-body-1" v-text="item.title"></v-list-item-title>
         </v-list-item-content>
 
         <v-list-item-action>
-          <v-switch
-            v-if="item.options.isSwitchable"
-            v-model="item.value"
-          ></v-switch>
+          <v-switch v-if="item.options.isSwitchable" v-model="item.value"></v-switch>
           <v-chip outlined v-else>
-            <v-list-item-action-text
-              class="text-h6"
-              v-text="item.value + ' ' + (item.unit ? item.unit : '')"
-            >
+            <v-list-item-action-text class="text-h6" v-text="item.value + ' ' + (item.unit ? item.unit : '')">
             </v-list-item-action-text>
           </v-chip>
         </v-list-item-action>
@@ -114,9 +105,17 @@ export default Vue.extend({
       name: icon_key,
       type: icon_object_key
     ): string {
-      // return item.options[name][type];
-      return item.options.icon[type][name];
-    },
+      const iconData = item.options.icon[type];
+
+      if (typeof iconData === 'object' && 'icon' in iconData && 'icon_color' in iconData) {
+        // Type assertion for the first case: { icon: string; icon_color: string; }
+        return (iconData as { icon: string; icon_color: string })[name];
+      } else {
+        // Type assertion for the second case: { name: string; color: string; }
+        return (iconData as { [key: string]: string })[name];
+      }
+    }
+
   },
 });
 </script>
